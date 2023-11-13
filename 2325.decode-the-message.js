@@ -7,23 +7,24 @@
 let alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 var decodeMessage = function (key, message) {
-  let map = {};
-  let alphabetPosition = 0;
   let keyArr = key.replaceAll(' ', '');
+  let decodeMap = {};
+  let alphabetPosition = 0;
 
   for (let i = 0; i < keyArr.length; i++) {
-    if (!map.hasOwnProperty(keyArr[i])) {
-      map[key] = alphabet[alphabetPosition];
+    let key = keyArr[i];
+    if (!decodeMap.hasOwnProperty(key)) {
+      decodeMap[key] = alphabet[alphabetPosition];
       alphabetPosition++;
     }
   }
 
-  map[' '] = ' ';
-  let decodedMessage = '';
+  decodeMap[' '] = ' ';
+  let messageDecoded = '';
 
   for (let i = 0; i < message.length; i++) {
-    decodedMessage += map[message[i]];
+    messageDecoded += decodeMap[message[i]];
   }
 
-  return decodedMessage;
+  return messageDecoded;
 };
